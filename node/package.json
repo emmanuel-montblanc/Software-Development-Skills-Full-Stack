@@ -1,0 +1,22 @@
+{
+  "name": "software-development-skills-full-stack",
+  "version": "1.0.0",
+  "description": "Node crash course",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emmanuel-montblanc/Software-Development-Skills-Full-Stack.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emmanuel-montblanc/Software-Development-Skills-Full-Stack/issues"
+  },
+  "homepage": "https://github.com/emmanuel-montblanc/Software-Development-Skills-Full-Stack#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
