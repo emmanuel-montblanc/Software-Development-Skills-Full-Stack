@@ -5,7 +5,7 @@ const passport = require("passport");
 const jwt = require("jsonwebtoken");
 const config = require("../config/database");
 
-// Register
+// Write article
 router.post("/write", (req, res, next) => {
   let newArticle = new Article({
     title: req.body.title,
@@ -22,6 +22,29 @@ router.post("/write", (req, res, next) => {
   });
 });
 
+
+// Post a comment
+router.post("/comment", (req, res, next) => {
+  let newComment = new Article({
+    writer: req.body.writer,
+    comment: req.body.comment
+  });
+
+  Article.getArticleById( req.body.id, (err, article) => {
+    if(err) throw err;
+
+    console.log(article)
+    Article.addComment(article, newComment, (err, article) => {
+      if (err) {
+        res.json({ success: false, msg: "Failed to add comment" });
+      } else {
+        res.json({ success: true, msg: "comment added" });
+      }
+    });
+  })
+});
+
+// Get all the articles
 router.get("/getall", (req, res, next) => {
   Article.getAllArticles( (err, articleList) => {
     if(err) throw err;

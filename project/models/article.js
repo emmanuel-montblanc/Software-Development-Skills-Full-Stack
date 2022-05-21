@@ -19,6 +19,12 @@ const ArticleSchema = mongoose.Schema({
   date: {
     type: Date,
   },
+
+  comments: [{
+    writer: {type: String},
+    comment: {type: String},
+    date: {type: Date}
+  }]
 });
 
 const Article = (module.exports = mongoose.model("Article", ArticleSchema));
@@ -38,5 +44,12 @@ module.exports.getAllArticles = function (callback) {
 
 module.exports.addArticle = function (newArticle, callback) {
   newArticle.date = new Date();
+  newArticle.comments = [];
   newArticle.save(callback);
+};
+
+module.exports.addComment = function (article, newComment, callback) {
+  newComment.date = new Date();
+  article.comments.push(newComment);
+  article.save(callback);
 };
