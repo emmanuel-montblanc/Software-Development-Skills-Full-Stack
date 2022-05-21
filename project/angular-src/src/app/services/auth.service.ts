@@ -36,6 +36,11 @@ export class AuthService {
       .map((res) => res.json());
   }
 
+  loadUser(){
+    const user = localStorage.getItem('user');
+    this.user = JSON.parse(user);
+  }
+
   loadToken(){
     const token = localStorage.getItem('id_token');
     this.authToken = token;

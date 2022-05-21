@@ -1,0 +1,29 @@
+<div>
+  <h2 class="page-header">Write article</h2>
+  <form (submit)="onRegisterSubmit()">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input
+        type="text"
+        [(ngModel)]="title"
+        name="title"
+        class="form-control"
+        id="title"
+        placeholder="Enter Name"
+      />
+    </div>
+    <div class="form-group">
+      <label for="bodytext">article text</label>
+      <input
+        type="text"
+        [(ngModel)]="bodytext"
+        name="bodytext"
+        class="form-control"
+        id="bodytext"
+        placeholder="Enter your article text"
+      />
+    </div>
+
+    <input type="submit" class="btn btn-primary" value="Submit" />
+  </form>
+</div>
