@@ -2,8 +2,20 @@
 <p>Welcome to the dashbaord</p>
 
 <div class="col-md-10" *ngFor="let article of articleList">
+
   <h3>{{ article.title }}</h3>
   <p>by: {{ article.writer }}</p>
   <p id="date">created: {{ article.date | date:'short'}}</p>
   <p>{{ article.bodytext }}</p>
+
+  <form (submit)="addComment(article._id)">
+    <input type="text" class="form-control" [(ngModel)]="commentText" name="commentText">
+    <input type="submit" class="btn btn-primary"  value="Comment">
+  </form>
+
+  <div *ngFor="let comment of article.comments">
+    <div class="row-div">{{comment.writer}} {{ comment.date | date:'short'}}</div>
+    <p>{{comment.comment}}</p>
+  </div>
+
 </div>

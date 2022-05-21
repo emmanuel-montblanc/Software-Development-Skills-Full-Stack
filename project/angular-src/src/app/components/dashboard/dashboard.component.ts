@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { ArticlesService } from "app/services/articles.service";
 import { FlashMessagesService } from "angular2-flash-messages";
+import { AuthService } from "app/services/auth.service";
+import { ValidateService } from "app/services/validate.service";
 
 @Component({
   selector: "app-dashboard",
@@ -9,13 +11,19 @@ import { FlashMessagesService } from "angular2-flash-messages";
 })
 export class DashboardComponent implements OnInit {
   articleList: any;
+  commentText: String;
+  writer: String;
 
   constructor(
     private articleService: ArticlesService,
-    private flashMessage: FlashMessagesService
+    private flashMessage: FlashMessagesService,
+    private validateService: ValidateService,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
+    this.authService.loadUser();
+    this.writer = this.authService.user.user;
 
     // Get all the articles from the DB
     this.articleService.getAllArticles().subscribe((data) => {
@@ -29,5 +37,37 @@ export class DashboardComponent implements OnInit {
         });
       }
     });
+  }
+
+  addComment(id){
+    const comment = {
+      id: id,
+      writer: this.writer,
+      comment: this.commentText
+    };
+
+    if(this.validateService.validateComment(comment)){
+    this.articleService.commentArticle(comment).subscribe((data) => {
+      if (data.success) {
+        this.flashMessage.show("Comment added", {
+          cssClass: "alert-success",
+          timeout: 3000,
+        });
+      } else {
+        this.flashMessage.show("Could not add comment" + data.success, {
+          cssClass: "alert-danger",
+          timeout: 3000,
+        });
+      }
+      window.location.reload();
+    });
+    } else {
+      this.flashMessage.show("Type something to comment", {
+        cssClass: "alert-danger",
+        timeout: 3000,
+      });
+    }
+
+
   }
 }

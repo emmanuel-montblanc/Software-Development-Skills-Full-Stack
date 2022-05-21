@@ -33,4 +33,14 @@ export class ValidateService {
       return true;
     }
   }
+
+  validateComment(comment){
+    if (
+      comment.comment == undefined
+    ) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 }

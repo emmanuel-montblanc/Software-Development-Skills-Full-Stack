@@ -25,11 +25,12 @@ router.post("/write", (req, res, next) => {
 
 // Post a comment
 router.post("/comment", (req, res, next) => {
-  let newComment = new Article({
+  let newComment = {
     writer: req.body.writer,
     comment: req.body.comment
-  });
+  };
 
+  console.log(newComment)
   Article.getArticleById( req.body.id, (err, article) => {
     if(err) throw err;
 
