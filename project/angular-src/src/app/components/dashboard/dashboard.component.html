@@ -1,2 +1,9 @@
 <h2 class="page-header">Dashboard</h2>
 <p>Welcome to the dashbaord</p>
+
+<div class="col-md-10" *ngFor="let article of articleList">
+  <h3>{{ article.title }}</h3>
+  <p>by: {{ article.writer }}</p>
+  <p id="date">created: {{ article.date | date:'short'}}</p>
+  <p>{{ article.bodytext }}</p>
+</div>

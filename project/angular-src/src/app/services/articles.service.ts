@@ -14,4 +14,10 @@ export class ArticlesService {
       .post("http://localhost:3000/articles/write", article, { headers: headers })
       .map((res) => res.json());
   }
+
+  getAllArticles(){
+    return this.http
+      .get("http://localhost:3000/articles/getall")
+      .map((res) => res.json());
+  }
 }
