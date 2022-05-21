@@ -29,7 +29,6 @@ export class DashboardComponent implements OnInit {
     this.articleService.getAllArticles().subscribe((data) => {
       if (data.success) {
         this.articleList = data.articleList;
-        console.log(this.articleList)
       } else {
         this.flashMessage.show("Could not load the articles" + data.success, {
           cssClass: "alert-danger",
@@ -39,35 +38,50 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  addComment(id){
+  addComment(id) {
     const comment = {
       id: id,
       writer: this.writer,
-      comment: this.commentText
+      comment: this.commentText,
     };
 
-    if(this.validateService.validateComment(comment)){
-    this.articleService.commentArticle(comment).subscribe((data) => {
-      if (data.success) {
-        this.flashMessage.show("Comment added", {
-          cssClass: "alert-success",
-          timeout: 3000,
-        });
-      } else {
-        this.flashMessage.show("Could not add comment" + data.success, {
-          cssClass: "alert-danger",
-          timeout: 3000,
-        });
-      }
-      window.location.reload();
-    });
+    if (this.validateService.validateComment(comment)) {
+      this.articleService.commentArticle(comment).subscribe((data) => {
+        if (data.success) {
+          this.flashMessage.show("Comment added", {
+            cssClass: "alert-success",
+            timeout: 3000,
+          });
+        } else {
+          this.flashMessage.show("Could not add comment" + data.success, {
+            cssClass: "alert-danger",
+            timeout: 3000,
+          });
+        }
+        window.location.reload();
+      });
     } else {
       this.flashMessage.show("Type something to comment", {
         cssClass: "alert-danger",
         timeout: 3000,
       });
     }
+  }
 
+  sortByDate() {
+    console.log('oui?')
+    this.articleList.sort((a, b) => {
+      return a.date - b.date;
+    });
+    // window.location.reload();
+  }
 
+  sortByPopularity() {
+    console.log(this.articleList);
+    this.articleList.sort((a, b) => {
+      return a.comments.length - a.comments.length;
+    });
+    console.log(this.articleList);
+    // window.location.reload();
   }
 }

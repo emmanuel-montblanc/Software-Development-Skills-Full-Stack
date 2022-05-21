@@ -23,21 +23,16 @@ export class ValidateService {
     return re.test(email);
   }
 
-  validateArticle(article){
-    if (
-      article.title == undefined ||
-      article.bodytext == undefined
-    ) {
+  validateArticle(article) {
+    if (article.title == undefined || article.bodytext == undefined) {
       return false;
     } else {
       return true;
     }
   }
 
-  validateComment(comment){
-    if (
-      comment.comment == undefined
-    ) {
+  validateComment(comment) {
+    if (comment.comment == undefined) {
       return false;
     } else {
       return true;

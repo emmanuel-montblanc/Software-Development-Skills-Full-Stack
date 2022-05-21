@@ -35,7 +35,6 @@ export class WriteComponent implements OnInit {
       writer: this.writer
     };
 
-    console.log(article)
     // Checks required fields
     if (!this.validateService.validateArticle(article)) {
       this.flashMessage.show('Please fill in all the fields', {cssClass: 'alert-danger', timeout: 3000});

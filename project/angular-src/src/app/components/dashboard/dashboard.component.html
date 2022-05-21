@@ -1,20 +1,25 @@
 <h2 class="page-header">Dashboard</h2>
 <p>Welcome to the dashbaord</p>
 
-<div class="col-md-10" *ngFor="let article of articleList">
+<p>sort by:</p>
+<div class="row-div">
+<button class="btn btn-primary" ng-click="sortByDate">Date</button>
+<button class="btn btn-primary" ng-click="sortByPopularity">Popularity</button>
+</div>
 
-  <h3>{{ article.title }}</h3>
-  <p>by: {{ article.writer }}</p>
-  <p id="date">created: {{ article.date | date:'short'}}</p>
+<div class="jumbotron text-left" *ngFor="let article of articleList">
+  <h2>{{ article.title }}</h2>
+  <p>by: <b>{{ article.writer }}</b></p>
   <p>{{ article.bodytext }}</p>
+  <p id="date">{{ article.date | date:'short'}}</p>
 
   <form (submit)="addComment(article._id)">
     <input type="text" class="form-control" [(ngModel)]="commentText" name="commentText">
     <input type="submit" class="btn btn-primary"  value="Comment">
   </form>
-
+  <p></p>
   <div *ngFor="let comment of article.comments">
-    <div class="row-div">{{comment.writer}} {{ comment.date | date:'short'}}</div>
+    <div class="row-div"><b>{{comment.writer}}</b> {{ comment.date | date:'short'}}</div>
     <p>{{comment.comment}}</p>
   </div>
 
