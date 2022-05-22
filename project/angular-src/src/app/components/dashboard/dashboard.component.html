@@ -3,8 +3,8 @@
 
 <p>sort by:</p>
 <div class="row-div">
-<button class="btn btn-primary" ng-click="sortByDate">Date</button>
-<button class="btn btn-primary" ng-click="sortByPopularity">Popularity</button>
+<button class="btn btn-primary" (click)="sortByDate()">Date</button>
+<button class="btn btn-primary" (click)="sortByPopularity()">Popularity</button>
 </div>
 
 <div class="jumbotron text-left" *ngFor="let article of articleList">

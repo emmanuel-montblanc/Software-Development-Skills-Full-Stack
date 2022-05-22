@@ -13,6 +13,7 @@ export class DashboardComponent implements OnInit {
   articleList: any;
   commentText: String;
   writer: String;
+  sorting: String = "date";
 
   constructor(
     private articleService: ArticlesService,
@@ -29,6 +30,14 @@ export class DashboardComponent implements OnInit {
     this.articleService.getAllArticles().subscribe((data) => {
       if (data.success) {
         this.articleList = data.articleList;
+
+        // Sort the articles by the number of comments if we clicked on sort by popularity
+        if (!(this.sorting === "date")) {
+          this.articleList.sort((a, b) => {
+            return b.comments.length - a.comments.length;
+          });
+        }
+
       } else {
         this.flashMessage.show("Could not load the articles" + data.success, {
           cssClass: "alert-danger",
@@ -58,7 +67,7 @@ export class DashboardComponent implements OnInit {
             timeout: 3000,
           });
         }
-        window.location.reload();
+        this.ngOnInit();
       });
     } else {
       this.flashMessage.show("Type something to comment", {
@@ -69,19 +78,14 @@ export class DashboardComponent implements OnInit {
   }
 
   sortByDate() {
-    console.log('oui?')
-    this.articleList.sort((a, b) => {
-      return a.date - b.date;
-    });
-    // window.location.reload();
+    console.log("sortbydate");
+    this.sorting = "date";
+    this.ngOnInit();
   }
 
   sortByPopularity() {
-    console.log(this.articleList);
-    this.articleList.sort((a, b) => {
-      return a.comments.length - a.comments.length;
-    });
-    console.log(this.articleList);
-    // window.location.reload();
+    console.log("sortbypopularity");
+    this.sorting = "popularity";
+    this.ngOnInit();
   }
 }
