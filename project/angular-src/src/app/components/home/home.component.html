@@ -1,8 +1,8 @@
 <div class="jumbotron text-center">
   <h1>CielBlog</h1>
-  <p class="lead">Welcome to CielBlog, a custom MEAN application with an authentication and article publication system  </p>
+  <p class="lead">Welcome to CielBlog, a custom MEAN application with an authentication, as well as an articles and comments publication system  </p>
   <div>
-    <a class="btn btn-primary" [routerLink]="['/register']">Register</a> <a class="btn btn-dark" [routerLink]="['/login']">Login</a>
+    <a class="btn btn-primary" *ngIf="!authService.loggedIn()" [routerLink]="['/register']">Register</a> <a class="btn btn-dark"  *ngIf="!authService.loggedIn()" [routerLink]="['/login']">Login</a> <a class="btn btn-primary"  *ngIf="authService.loggedIn()" [routerLink]="['/dashboard']">Main feed</a>
   </div>
 </div>
 
