@@ -1,10 +1,16 @@
-<h2 class="page-header">Dashboard</h2>
-<p>Welcome to the dashbaord</p>
+<h2 class="page-header">Main feed</h2>
+<p>Welcome to CielBlog, here you can see the newest and most popular articles</p>
 
-<p>sort by:</p>
+<div>
+sort by:
 <div class="row-div">
-<button class="btn btn-primary" (click)="sortByDate()">Date</button>
-<button class="btn btn-primary" (click)="sortByPopularity()">Popularity</button>
+<button class="btn btn-primary" [disabled]="sorting == 'date'" (click)="sortByDate()">Date</button>
+<button class="btn btn-primary" [disabled]="sorting == 'popularity'" (click)="sortByPopularity()">Popularity</button>
+
+<!-- <button [ngClass]="sorting == date ? 'btn-disable': 'btn-primary'" (click)="sortByDate()">Date</button>
+<button [ngClass]="sorting == date ? 'btn-primary': 'btn-disable'" (click)="sortByPopularity()">Popularity</button> -->
+<p></p>
+</div>
 </div>
 
 <div class="jumbotron text-left" *ngFor="let article of articleList">

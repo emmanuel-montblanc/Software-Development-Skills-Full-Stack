@@ -32,7 +32,7 @@ export class DashboardComponent implements OnInit {
         this.articleList = data.articleList;
 
         // Sort the articles by the number of comments if we clicked on sort by popularity
-        if (!(this.sorting === "date")) {
+        if (this.sorting === "popularity") {
           this.articleList.sort((a, b) => {
             return b.comments.length - a.comments.length;
           });
