@@ -9,19 +9,19 @@
         name="title"
         class="form-control"
         id="title"
-        placeholder="Enter Name"
+        placeholder="Enter your Title"
       />
     </div>
     <div class="form-group">
-      <label for="bodytext">article text</label>
-      <input
-        type="text"
+      <label for="bodytext">Article text</label>
+      <textarea
+        class="textarea"
+        rows="20"
         [(ngModel)]="bodytext"
         name="bodytext"
-        class="form-control"
         id="bodytext"
         placeholder="Enter your article text"
-      />
+      ></textarea>
     </div>
 
     <input type="submit" class="btn btn-primary" value="Submit" />
