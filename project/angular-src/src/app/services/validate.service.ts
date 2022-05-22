@@ -32,7 +32,7 @@ export class ValidateService {
   }
 
   validateComment(comment) {
-    if (comment.comment == undefined) {
+    if (comment.comment == undefined || comment.comment === "") {
       return false;
     } else {
       return true;

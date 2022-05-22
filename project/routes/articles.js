@@ -30,11 +30,9 @@ router.post("/comment", (req, res, next) => {
     comment: req.body.comment
   };
 
-  console.log(newComment)
   Article.getArticleById( req.body.id, (err, article) => {
     if(err) throw err;
 
-    console.log(article)
     Article.addComment(article, newComment, (err, article) => {
       if (err) {
         res.json({ success: false, msg: "Failed to add comment" });
